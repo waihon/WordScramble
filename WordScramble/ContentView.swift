@@ -26,6 +26,7 @@ struct ContentView: View {
         }
       }
       .navigationBarTitle(rootWord)
+      .onAppear(perform: startGame)
     }
   }
   
