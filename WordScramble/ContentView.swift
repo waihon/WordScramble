@@ -13,8 +13,16 @@ struct ContentView: View {
   @State private var newWord = ""
   
   var body: some View {
-    Text("Hello, world!")
-      .padding()
+    NavigationView {
+      VStack {
+        TextField("Enter your word", text: $newWord)
+        
+        List(usedWords, id: \.self) {
+          Text($0)
+        }
+      }
+      .navigationBarTitle(rootWord)
+    }
   }
 }
 
