@@ -26,6 +26,20 @@ struct ContentView: View {
       .navigationBarTitle(rootWord)
     }
   }
+  
+  func addNewWord() {
+    // Lowercase and trim the word, to make sure we
+    // don't add duplicate words with case differences
+    let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+    
+    // Exit if the remaining string is empty
+    guard answer.count > 0 else { return }
+    
+    // Extra validation to come
+    
+    usedWords.insert(answer, at: 0)
+    newWord = ""
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
