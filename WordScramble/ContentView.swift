@@ -45,6 +45,11 @@ struct ContentView: View {
     // Exit if the remaining string is empty
     guard answer.count > 0 else { return }
     
+    guard isLongEnough(word: answer) else {
+      wordError(title: "Word too short", message: "The minimum is three letters.")
+      return
+    }
+    
     guard isOriginal(word: answer) else {
       wordError(title: "Word used already", message: "Be more original.")
       return
@@ -119,6 +124,10 @@ struct ContentView: View {
       wrap: false, language: "en")
     
     return misspelledRange.location == NSNotFound
+  }
+  
+  func isLongEnough(word: String) -> Bool {
+    return word.count >= 3
   }
   
   func wordError(title: String, message: String) {
