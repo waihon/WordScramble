@@ -50,6 +50,11 @@ struct ContentView: View {
       return
     }
     
+    guard isNotStartWord(word: answer) else {
+      wordError(title: "Word is the same as the start word", message: "Be more original.")
+      return
+    }
+    
     guard isOriginal(word: answer) else {
       wordError(title: "Word used already", message: "Be more original.")
       return
@@ -128,6 +133,10 @@ struct ContentView: View {
   
   func isLongEnough(word: String) -> Bool {
     return word.count >= 3
+  }
+  
+  func isNotStartWord(word: String) -> Bool {
+    return word != rootWord
   }
   
   func wordError(title: String, message: String) {
