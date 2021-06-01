@@ -70,6 +70,26 @@ struct ContentView: View {
   func isOriginal(word: String) -> Bool  {
     !usedWords.contains(word)
   }
+  
+  func isPossible(word: String) -> Bool {
+    // Create a variable copy of the root word
+    var tempWord = rootWord
+    
+    // Loop over each letter of the user's input word
+    for letter in word {
+      // See if that letter exists in our copy
+      if let pos = tempWord.firstIndex(of: letter) {
+        // If it does, we remove it from the copy
+        // (so it can't be used twice), then continue
+        tempWord.remove(at: pos)
+      } else {
+        return false
+      }
+    }
+    // If we make it to the end of the user's word
+    // successfully then the word is good
+    return true
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
